@@ -1,0 +1,72 @@
+.adminclean-wrap .description {
+	max-width: 760px;
+}
+
+.adminclean-table {
+	margin-top: 18px;
+}
+
+.adminclean-muted {
+	color: #646970;
+	margin-left: 6px;
+}
+
+.adminclean-badge {
+	border-radius: 999px;
+	display: inline-block;
+	font-size: 12px;
+	font-weight: 600;
+	line-height: 1;
+	padding: 5px 8px;
+}
+
+.adminclean-badge-active {
+	background: #d1e7dd;
+	color: #0f5132;
+}
+
+.adminclean-badge-inactive {
+	background: #fff3cd;
+	color: #664d03;
+}
+
+.adminclean-badge-missing {
+	background: #f8d7da;
+	color: #842029;
+}
+
+.adminclean-inline-code {
+	display: inline-block;
+	margin: 2px 4px 2px 0;
+}
+
+.adminclean-textarea {
+	max-width: 880px;
+}
+
+.adminclean-tools {
+	align-items: center;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12px 18px;
+	margin-top: 14px;
+}
+
+.adminclean-tools form {
+	align-items: center;
+	display: flex;
+	gap: 8px;
+}
+
+.adminclean-sort-link {
+	align-items: center;
+	display: inline-flex;
+	gap: 6px;
+	text-decoration: none;
+}
+
+.adminclean-sort-direction {
+	color: #646970;
+	font-size: 11px;
+	font-weight: 600;
+}
