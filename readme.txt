@@ -4,7 +4,7 @@ Tags: admin, agency, plugins, white label
 Requires at least: 6.0
 Tested up to: 6.5
 Requires PHP: 7.4
-Stable tag: 0.5.7
+Stable tag: 0.5.8
 License: GPLv2 or later
 
 This plugin hides irrelevant notices and default plugins for Harvey Plum Hosting customers to keep their admin interfaces clean. Please deactivate it to see all notices and plugins.
@@ -45,6 +45,9 @@ Imports only replace the protected plugin list. Trusted manager user IDs and beh
 AdminClean intentionally does not deactivate, delete, or modify protected plugins. It only changes visibility for non-manager administrator users.
 
 == Changelog ==
+
+= 0.5.8 =
+* Added Git Updater to AdminClean's required protected plugins, including existing saved configurations.
 
 = 0.5.7 =
 * Added GitHub update metadata and standardized Harvey Plum branding.
