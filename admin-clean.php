@@ -3,7 +3,7 @@
  * Plugin Name: AdminClean
  * Plugin URI: https://harveyplum.com/adminclean/
  * Description: This plugin hides irrelevant notices and default plugins for Harvey Plum Hosting customers to keep their admin interfaces clean. Please deactivate it to see all notices and plugins.
- * Version: 0.5.7
+ * Version: 0.5.8
  * Author: Harvey Plum
  * Author URI: https://harveyplum.com
  * GitHub Plugin URI: https://github.com/HarveyPlum/admin-clean
@@ -21,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'ADMINCLEAN_VERSION', '0.5.7' );
+define( 'ADMINCLEAN_VERSION', '0.5.8' );
 define( 'ADMINCLEAN_FILE', __FILE__ );
 define( 'ADMINCLEAN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'ADMINCLEAN_URL', plugin_dir_url( __FILE__ ) );

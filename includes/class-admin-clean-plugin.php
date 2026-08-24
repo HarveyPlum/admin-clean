@@ -22,6 +22,9 @@ final class AdminClean_Plugin {
 	const IMPORT_ACTION     = 'adminclean_import_config';
 	const DEFAULT_CAPABILITY = 'manage_options';
 	private const AGENCY_EMAIL_DOMAIN = 'harveyplum.com';
+	private const REQUIRED_PROTECTED_PLUGINS = array(
+		'git-updater/git-updater.php' => 'git-updater/git-updater.php | Git Updater | git-updater',
+	);
 	private const DEFAULT_PROTECTED_PLUGINS_TEXT = <<<'ADMINCLEAN_DEFAULT_PROTECTED_PLUGINS'
 advanced-nocaptcha-recaptcha/advanced-nocaptcha-recaptcha.php | CAPTCHA 4WP | c4wp-admin-captcha
 advanced-db-cleaner.php | advanced-db-cleaner.php
@@ -42,6 +45,7 @@ wp-phpmyadmin-extension.php | wp-phpmyadmin-extension.php
 wp-phpmyadmin/wp-phpmyadmin.php | wp-phpmyadmin/wp-phpmyadmin.php
 wp-asset-clean-up/wpacu.php | Asset CleanUp | wpassetcleanup_getting_started
 amazon-s3-and-cloudfront/wordpress-s3.php | amazon-s3-and-cloudfront/wordpress-s3.php | amazon-s3-and-cloudfront
+git-updater/git-updater.php | Git Updater | git-updater
 admin-clean/admin-clean.php | AdminClean | adminclean
 ADMINCLEAN_DEFAULT_PROTECTED_PLUGINS;
 
@@ -162,6 +166,7 @@ ADMINCLEAN_DEFAULT_PROTECTED_PLUGINS;
 		}
 
 		$settings = wp_parse_args( $settings, $defaults );
+		$settings['protected_plugins_text'] = $this->ensure_required_protected_plugins( (string) $settings['protected_plugins_text'] );
 
 		if (
 			is_array( $stored_settings )
@@ -190,6 +195,29 @@ ADMINCLEAN_DEFAULT_PROTECTED_PLUGINS;
 		$settings['suppress_admin_notices'] = (bool) $settings['suppress_admin_notices'];
 
 		return $settings;
+	}
+
+	/**
+	 * Add agency-required protected plugins to saved configurations.
+	 *
+	 * Existing installations store their own protected-plugin text, so changing
+	 * the default alone would not hide a newly required management plugin.
+	 *
+	 * @param string $text Saved protected-plugin configuration.
+	 */
+	private function ensure_required_protected_plugins( string $text ): string {
+		$configured_files = array_column( $this->parse_protected_plugins_text( $text ), 'plugin_file' );
+		$text             = trim( $text );
+
+		foreach ( self::REQUIRED_PROTECTED_PLUGINS as $plugin_file => $line ) {
+			if ( in_array( $plugin_file, $configured_files, true ) ) {
+				continue;
+			}
+
+			$text .= ( '' === $text ? '' : "\n" ) . $line;
+		}
+
+		return $text;
 	}
 
 	/**
